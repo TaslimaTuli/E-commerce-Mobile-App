@@ -7,8 +7,8 @@ export default function PasswordResetEmailSent() {
 	const [Password, setPassword] = useState("");
 
 	return (
-		<View className="flex-1 bg-gray-50 px-5 items-center justify-center">
-			<StatusBar backgroundColor={"rgb(248 250 252)"} barStyle={"dark-content"} />
+		<View className="flex-1 bg-stone-50 px-5 items-center justify-center">
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 			<View className="items-center justify-center space-y-7">
 				<Email />
 				<Text className="text-3xl font-bold text-black text-center">We Sent you an Email to reset your password.</Text>

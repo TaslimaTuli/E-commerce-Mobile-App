@@ -14,14 +14,14 @@ export default function SignUpForm() {
 	const isFormValid = firstName && lastName && email && password;
 
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-gray-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<StatusBar backgroundColor={"rgb(248 250 252)"} barStyle={"dark-content"} />
+		<KeyboardAvoidingView className="flex-1 bg-stone-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 			<TouchableOpacity className="py-4 w-0">
 				<BackLogo />
 			</TouchableOpacity>
 			<Text className="text-4xl font-bold text-black pb-3">Create Account</Text>
 			<TextInput
-				className="bg-gray-200 mx-1 mt-5 py-3 px-2 text-lg text-black rounded"
+				className="bg-stone-200 mx-1 mt-5 py-3 px-2 text-lg text-black rounded"
 				placeholder="First Name"
 				blurOnSubmit={true}
 				cursorColor={"rgb(139 92 246)"}
@@ -30,7 +30,7 @@ export default function SignUpForm() {
 				onChangeText={setFirstName}
 			/>
 			<TextInput
-				className="bg-gray-200 mx-1 my-5 py-3 px-2 text-lg text-black rounded"
+				className="bg-stone-200 mx-1 my-5 py-3 px-2 text-lg text-black rounded"
 				placeholder="Last Name"
 				blurOnSubmit={true}
 				cursorColor={"rgb(139 92 246)"}
@@ -39,7 +39,7 @@ export default function SignUpForm() {
 				onChangeText={setLastName}
 			/>
 			<TextInput
-				className="bg-gray-200 mx-1  py-3 px-2 text-lg text-black rounded"
+				className="bg-stone-200 mx-1  py-3 px-2 text-lg text-black rounded"
 				placeholder="Email Address"
 				blurOnSubmit={true}
 				keyboardType="email-address"
@@ -49,7 +49,7 @@ export default function SignUpForm() {
 				onChangeText={setEmail}
 			/>
 			<TextInput
-				className="bg-gray-200 mx-1 my-5 py-3 px-2 text-lg text-black rounded"
+				className="bg-stone-200 mx-1 my-5 py-3 px-2 text-lg text-black rounded"
 				placeholder="Password"
 				blurOnSubmit={true}
 				cursorColor={"rgb(139 92 246)"}

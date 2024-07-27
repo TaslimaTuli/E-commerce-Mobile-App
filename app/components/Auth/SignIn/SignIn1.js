@@ -8,11 +8,11 @@ export default function SignIn1() {
 	const [email, setEmail] = useState("");
 
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-gray-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<StatusBar backgroundColor={"rgb(248 250 252)"} barStyle={"dark-content"} />
+		<KeyboardAvoidingView className="flex-1 bg-stone-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 			<Text className="text-4xl font-bold text-black pt-16 pb-3">Sign In</Text>
 			<TextInput
-				className="bg-gray-200 mx-1 my-5 py-3 px-2 text-lg text-black rounded"
+				className="bg-stone-200 mx-1 my-5 py-3 px-2 text-lg text-black rounded"
 				placeholder="Email Address"
 				blurOnSubmit={true}
 				keyboardType="email-address"
@@ -33,15 +33,15 @@ export default function SignIn1() {
 			</View>
 			{/* Other Options */}
 			<View className="mt-16 space-y-4 ">
-				<TouchableOpacity className="flex-row items-center justify-center bg-gray-200 py-3 px-4 rounded-full">
+				<TouchableOpacity className="flex-row items-center justify-center bg-stone-200 py-3 px-4 rounded-full">
 					<AppleLogo />
 					<Text className="text-black text-lg font-semibold mx-20">Continue With Apple</Text>
 				</TouchableOpacity>
-				<TouchableOpacity className="flex-row items-center justify-center bg-gray-200 py-3 px-4 rounded-full">
+				<TouchableOpacity className="flex-row items-center justify-center bg-stone-200 py-3 px-4 rounded-full">
 					<GoogleLogo />
 					<Text className="text-black text-lg font-semibold mx-20">Continue With Google</Text>
 				</TouchableOpacity>
-				<TouchableOpacity className="flex-row items-center justify-center bg-gray-200 py-3 px-4 rounded-full">
+				<TouchableOpacity className="flex-row items-center justify-center bg-stone-200 py-3 px-4 rounded-full">
 					<FbLogo />
 					<Text className="text-black text-lg font-semibold mx-[70] ">Continue With Facebook</Text>
 				</TouchableOpacity>

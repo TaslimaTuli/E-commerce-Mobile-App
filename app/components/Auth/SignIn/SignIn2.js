@@ -5,11 +5,11 @@ export default function SignIn2() {
 	const [Password, setPassword] = useState("");
 
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-gray-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<StatusBar backgroundColor={"rgb(248 250 252)"} barStyle={"dark-content"} />
+		<KeyboardAvoidingView className="flex-1 bg-stone-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 			<Text className="text-4xl font-bold text-black pt-16 pb-3">Sign In</Text>
 			<TextInput
-				className="bg-gray-200 mx-1 my-5 py-3 px-2 text-lg text-black rounded"
+				className="bg-stone-200 mx-1 my-5 py-3 px-2 text-lg text-black rounded"
 				placeholder="Password"
 				blurOnSubmit={true}
 				cursorColor={"rgb(139 92 246)"}
