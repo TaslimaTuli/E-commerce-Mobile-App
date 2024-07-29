@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, TextInput, TouchableOpacity, KeyboardAvoidingView } from "react-native";
+import { View, Text, StatusBar, TextInput, TouchableOpacity, KeyboardAvoidingView, SafeAreaView } from "react-native";
 import React, { useState } from "react";
 
 import Email from "../../../assets/Login&Onboarding/Email.svg";
@@ -7,7 +7,7 @@ export default function PasswordResetEmailSent() {
 	const [Password, setPassword] = useState("");
 
 	return (
-		<View className="flex-1 bg-stone-50 px-5 items-center justify-center">
+		<SafeAreaView className="flex-1 bg-stone-50 px-5 items-center justify-center">
 			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 			<View className="items-center justify-center space-y-7">
 				<Email />
@@ -17,6 +17,6 @@ export default function PasswordResetEmailSent() {
 					<Text className="text-lg font-semibold text-gray-50">Return to Login</Text>
 				</TouchableOpacity>
 			</View>
-		</View>
+		</SafeAreaView>
 	);
 }

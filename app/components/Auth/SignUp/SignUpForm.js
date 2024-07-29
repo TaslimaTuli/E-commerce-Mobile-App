@@ -1,8 +1,6 @@
 import { View, Text, StatusBar, TextInput, TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import React, { useState } from "react";
-import AppleLogo from "../../../assets/Login&Onboarding/Apple.svg";
-import FbLogo from " ../../../assets/Login&Onboarding/Fb.svg";
-import GoogleLogo from "../../../assets/Login&Onboarding/Google.svg";
+
 import BackLogo from "../../../assets/Login&Onboarding/Back.svg";
 
 export default function SignUpForm() {
@@ -14,8 +12,8 @@ export default function SignUpForm() {
 	const isFormValid = firstName && lastName && email && password;
 
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-stone-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+		<KeyboardAvoidingView className="flex-1 bg-white px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
 			<TouchableOpacity className="py-4 w-0">
 				<BackLogo />
 			</TouchableOpacity>
