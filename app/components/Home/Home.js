@@ -43,7 +43,7 @@ export default function Home() {
 			setDropdownVisible(true);
 			Animated.parallel([
 				Animated.timing(dropdownHeight, {
-					toValue: 70,
+					toValue: 90,
 					duration: 300,
 					easing: Easing.linear,
 					useNativeDriver: false,
@@ -115,6 +115,9 @@ export default function Home() {
 						</TouchableOpacity>
 						<TouchableOpacity className="py-1" onPress={() => handleSelectOption("Women")}>
 							<Text className="text-black text-base">Women</Text>
+						</TouchableOpacity>
+						<TouchableOpacity className="py-1" onPress={() => handleSelectOption("Kids")}>
+							<Text className="text-black text-base">Kids</Text>
 						</TouchableOpacity>
 					</Animated.View>
 				)}

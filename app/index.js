@@ -1,10 +1,10 @@
 import React from "react";
-import Home from "./components/Home/Home";
-import Product from "./components/Home/Product";
-import SearchResult from "./components/Home/SearchResults";
+
+import AddCard from "./components/Settings/AddCard";
+import Settings from "./components/Settings/Settings";
 
 function App() {
-	return <SearchResult />;
+	return <Settings />;
 }
 
 export default App;
