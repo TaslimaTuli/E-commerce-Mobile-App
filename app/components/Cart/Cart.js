@@ -1,5 +1,6 @@
 import { View, Text, SafeAreaView, StatusBar, TouchableOpacity, ScrollView, TextInput, KeyboardAvoidingView } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import BackLogo from "../../assets/Login&Onboarding/Back.svg";
 
@@ -13,23 +14,26 @@ import Plus from "../../assets/Homepage/Products/Plus.svg";
 import Minus from "../../assets/Homepage/Products/Minus.svg";
 
 export default function Cart() {
+	const navigation = useNavigation();
+
 	const orders = [
 		{ orderName: "Men's Harrington Jacket", price: "$148.00", icon: Order1, size: "M", color: "Lemon" },
 		{ orderName: "Men's Coaches Jacket", price: "$52.00", icon: Order2, size: "M", color: "Black" },
 	];
 
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-white" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<SafeAreaView className="flex-1 bg-white">
-				<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
-				<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-white px-4" contentContainerStyle={{ flexGrow: 1 }}>
+		<KeyboardAvoidingView className="flex-1 bg-stone-50" behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<SafeAreaView className="flex-1 bg-stone-50">
+				<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+				<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-stone-50 px-4" contentContainerStyle={{ flexGrow: 1 }}>
 					{/* header */}
-					<View className="flex-row items-center justify-center mt-7 mb-2">
-						<TouchableOpacity className="w-0">
+					<View className="flex-row items-center justify-center mt-5">
+						<TouchableOpacity className="p-2" onPress={() => navigation.goBack()}>
 							<BackLogo />
 						</TouchableOpacity>
-						<Text className="text-black font-bold text-xl px-36">Cart</Text>
+						<Text className="text-black font-bold text-xl px-28 mr-14">Cart</Text>
 					</View>
+					{/* Remove all */}
 					<View className="items-end pb-1">
 						<TouchableOpacity className=" w-20 items-center">
 							<Text className="text-black text-lg">Remove All</Text>
@@ -96,7 +100,7 @@ export default function Cart() {
 							</TouchableOpacity>
 						</View>
 						<View className="py-4 px-4 ">
-							<TouchableOpacity className="py-4 rounded-full items-center bg-violet-500">
+							<TouchableOpacity className="py-4 rounded-full items-center bg-violet-500" onPress={() => navigation.navigate("Checkout")}>
 								<Text className="text-gray-50 text-lg">Checkout</Text>
 							</TouchableOpacity>
 						</View>

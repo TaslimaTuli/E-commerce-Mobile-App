@@ -2,6 +2,7 @@ import { View, Text, StatusBar, TextInput, TouchableOpacity, KeyboardAvoidingVie
 import React, { useState } from "react";
 
 import BackLogo from "../../../assets/Login&Onboarding/Back.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignUpForm() {
 	const [firstName, setFirstName] = useState("");
@@ -11,10 +12,14 @@ export default function SignUpForm() {
 
 	const isFormValid = firstName && lastName && email && password;
 
+	const navigation = useNavigation();
+	const handleNext = () => {
+		navigation.navigate("MoreSignUp");
+	};
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-white px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
-			<TouchableOpacity className="py-4 w-0">
+		<KeyboardAvoidingView className="flex-1 bg-stone-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+			<TouchableOpacity className="my-4 mr-auto" onPress={() => navigation.goBack()}>
 				<BackLogo />
 			</TouchableOpacity>
 			<Text className="text-4xl font-bold text-black pb-3">Create Account</Text>
@@ -59,12 +64,13 @@ export default function SignUpForm() {
 			<TouchableOpacity
 				className={`items-center justify-center my-5 py-3 rounded-full ${isFormValid ? "bg-violet-500" : "bg-violet-200"}`}
 				disabled={!isFormValid}
+				onPress={handleNext}
 			>
 				<Text className="text-lg font-semibold text-gray-50">Continue</Text>
 			</TouchableOpacity>
 			<View className="flex-row py-5">
 				<Text className="text-sm text-black">Forgot Password ?</Text>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate("ForgotPass")}>
 					<Text className="text-sm text-black font-bold ml-1">Reset</Text>
 				</TouchableOpacity>
 			</View>

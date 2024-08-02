@@ -4,21 +4,24 @@ import React from "react";
 import BackLogo from "../../assets/Login&Onboarding/Back.svg";
 import ArrowRight from "../../assets/Notifications/Arrow_right.svg";
 import MasterCard from "../../assets/Cart/MasterCard.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Payment() {
 	const cards = ["****4187", "****9387"];
 
+	const navigation = useNavigation();
+
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-white" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<SafeAreaView className="flex-1 bg-white">
-				<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
-				<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-white px-4" contentContainerStyle={{ flexGrow: 1 }}>
+		<KeyboardAvoidingView className="flex-1 bg-stone-50" behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<SafeAreaView className="flex-1 bg-stone-50">
+				<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+				<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-stone-50 px-4" contentContainerStyle={{ flexGrow: 1 }}>
 					{/* header */}
-					<View className="flex-row items-center justify-center mt-7 mb-2">
-						<TouchableOpacity className="w-0">
+					<View className="flex-row items-center justify-center mt-5">
+						<TouchableOpacity className="p-2" onPress={() => navigation.goBack()}>
 							<BackLogo />
 						</TouchableOpacity>
-						<Text className="text-black font-bold text-xl px-36">Payment</Text>
+						<Text className="text-black font-bold text-xl px-24 mr-12">Payment</Text>
 					</View>
 
 					{/* Cards */}
@@ -26,10 +29,10 @@ export default function Payment() {
 					{cards.map((a, index) => (
 						<View key={index} className="flex-row justify-between items-center py-6 px-5 mt-4 bg-stone-100 rounded-lg shadow-sm shadow-stone-500">
 							<Text className="text-base text-black ">{a}</Text>
-							<TouchableOpacity className="mr-48">
+							<View className="mr-48">
 								<MasterCard />
-							</TouchableOpacity>
-							<TouchableOpacity className="">
+							</View>
+							<TouchableOpacity className="" onPress={() => navigation.navigate("AddCard")}>
 								<ArrowRight />
 							</TouchableOpacity>
 						</View>

@@ -5,8 +5,8 @@ import Bell from "../../assets/Notifications/Bell.svg";
 
 export default function NoNotification() {
 	return (
-		<SafeAreaView className="flex-1 bg-white px-5 items-center justify-center">
-			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
+		<SafeAreaView className="flex-1 bg-stone-50 px-5 items-center justify-center">
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 			<View className="absolute top-10 items-center">
 				<Text className="text-black font-extrabold text-xl">Notifications</Text>
 			</View>

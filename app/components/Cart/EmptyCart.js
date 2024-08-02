@@ -6,8 +6,8 @@ import BackLogo from "../../assets/Login&Onboarding/Back.svg";
 
 export default function EmptyCart() {
 	return (
-		<SafeAreaView className="flex-1 bg-white  items-center justify-center">
-			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
+		<SafeAreaView className="flex-1 bg-stone-50  items-center justify-center">
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 			<View className="absolute top-10 left-5 items-center">
 				<BackLogo />
 			</View>

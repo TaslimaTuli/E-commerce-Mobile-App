@@ -7,8 +7,11 @@ import Hoodie1 from "../../assets/Homepage/Hoodie1.svg";
 import Hoodie2 from "../../assets/Homepage/Hoodie2.svg";
 import Hoodie3 from "../../assets/Homepage/Hoodie3.svg";
 import Love from "../../assets/Homepage/Top_Selling/Love.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function MoreCategories() {
+	const navigation = useNavigation();
+
 	const topSellingItems = [
 		{ name: "Men's Harrington Jacket", price: "$148.00", icon: Jacket },
 		{ name: "Men's Fleece Pullover Hoodie", price: "$100.00", discount: "$100.97", icon: Hoodie1 },
@@ -21,17 +24,17 @@ export default function MoreCategories() {
 	];
 
 	return (
-		<SafeAreaView className="flex-1 bg-white px-4 pt-7">
+		<SafeAreaView className="flex-1 bg-stone-50 px-4 pt-7">
 			<ScrollView showsVerticalScrollIndicator={false}>
-				<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
-				<TouchableOpacity className="py-5 w-0">
+				<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+				<TouchableOpacity className="my-4 mr-auto " onPress={() => navigation.goBack()}>
 					<BackLogo />
 				</TouchableOpacity>
 				<Text className="text-xl font-extrabold text-black pb-5">Hoodies (240)</Text>
 
 				<View className="flex-row flex-wrap justify-between items-center">
 					{topSellingItems.map((item, index) => (
-						<TouchableOpacity key={index} className="bg-stone-100 rounded-xl p-3 mb-4 w-[48%]">
+						<TouchableOpacity key={index} className="bg-stone-100 rounded-xl p-3 mb-4 w-[48%]" onPress={() => navigation.navigate("Product")}>
 							<TouchableOpacity className="items-end mb-2">
 								<Love />
 							</TouchableOpacity>

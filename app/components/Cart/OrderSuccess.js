@@ -2,8 +2,11 @@ import { View, Text, SafeAreaView, StatusBar, TouchableOpacity } from "react-nat
 import React from "react";
 
 import Success from "../../assets/Cart/Success.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function OrderSuccess() {
+	const navigation = useNavigation();
+
 	return (
 		<SafeAreaView className="flex-1 bg-violet-500  items-center justify-center">
 			<StatusBar backgroundColor={"rgb(139 92 246)"} barStyle={"light-content"} />
@@ -14,7 +17,7 @@ export default function OrderSuccess() {
 			<View className="absolute bottom-0 items-center justify-center w-full bg-stone-100 rounded-t-2xl h-96 ">
 				<Text className="text-3xl font-bold text-black text-center px-14 tracking-widest">Order Placed Successfully</Text>
 				<Text className="text-lg  text-gray-500 text-center py-6">You will receive an email confirmation</Text>
-				<TouchableOpacity className=" py-3 px-28 mt-24 rounded-full bg-violet-500">
+				<TouchableOpacity className=" py-3 px-28 mt-24 rounded-full bg-violet-500" onPress={() => navigation.navigate("OrderTab")}>
 					<Text className="text-base font-semibold text-gray-50">See Order Details</Text>
 				</TouchableOpacity>
 			</View>

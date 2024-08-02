@@ -21,9 +21,9 @@ export default function Notifications() {
 	];
 
 	return (
-		<SafeAreaView className="flex-1 bg-white px-4">
-			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
-			<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-white">
+		<SafeAreaView className="flex-1 bg-stone-50 px-4">
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+			<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-stone-50">
 				<View className="flex items-center justify-center mt-7 mb-2">
 					<Text className="text-black font-extrabold text-xl">Notifications</Text>
 				</View>

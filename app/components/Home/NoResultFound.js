@@ -7,11 +7,11 @@ import BackLogo from "../../assets/Login&Onboarding/Back.svg";
 
 export default function NoResultFound() {
 	return (
-		<SafeAreaView className="flex-1 bg-white  items-center justify-center">
-			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
+		<SafeAreaView className="flex-1 bg-stone-50  items-center justify-center">
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 
 			<View className="flex-row justify-between items-center absolute top-7">
-				<TouchableOpacity className="pr-3 w-0">
+				<TouchableOpacity className="my-2 mr-auto">
 					<BackLogo />
 				</TouchableOpacity>
 				<View className="flex-row items-center bg-stone-200 w-5/6 px-4 rounded-full">

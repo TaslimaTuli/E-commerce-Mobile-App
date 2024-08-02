@@ -8,8 +8,14 @@ import Bags from "../../assets/Homepage/Categories/Bags.svg";
 import Hoodies from "../../assets/Homepage/Categories/Hoodies.svg";
 import Shoes from "../../assets/Homepage/Categories/Shoes.svg";
 import Shorts from "../../assets/Homepage/Categories/Shorts.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Categories() {
+	const navigation = useNavigation();
+	const handleCategory = () => {
+		navigation.navigate("MoreCategories");
+	};
+
 	const categories = [
 		{ name: "Hoodies", icon: Hoodies },
 		{ name: "Shorts", icon: Shorts },
@@ -18,15 +24,15 @@ export default function Categories() {
 		{ name: "Accessories", icon: Accessories },
 	];
 	return (
-		<SafeAreaView className="flex-1 bg-white px-4 pt-7">
-			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
-			<TouchableOpacity className="py-5 w-0">
+		<SafeAreaView className="flex-1 bg-stone-50 px-4 pt-7">
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+			<TouchableOpacity className="my-4 mr-auto" onPress={() => navigation.goBack()}>
 				<BackLogo />
 			</TouchableOpacity>
 			<Text className="text-3xl font-bold text-black pb-3">Shop by Categories</Text>
 
 			{categories.map((category, index) => (
-				<TouchableOpacity key={index} className="flex-col px-2 py-2 mt-4 bg-stone-100 rounded-lg shadow-sm shadow-stone-600">
+				<TouchableOpacity key={index} className="flex-col px-2 py-2 mt-4 bg-stone-100 rounded-lg shadow-sm shadow-stone-600" onPress={handleCategory}>
 					<View className="flex-row justify-start items-center">
 						<category.icon />
 						<Text className="text-xl text-black font-semibold pl-4">{category.name}</Text>

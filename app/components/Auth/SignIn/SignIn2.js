@@ -1,9 +1,15 @@
 import { View, Text, StatusBar, TextInput, TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignIn2() {
 	const [Password, setPassword] = useState("");
 
+	const navigation = useNavigation();
+	const handleLogin = () => {
+		navigation.navigate("Home");
+		setPassword("");
+	};
 	return (
 		<KeyboardAvoidingView className="flex-1 bg-stone-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
 			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
@@ -18,12 +24,18 @@ export default function SignIn2() {
 				onChangeText={setPassword}
 			/>
 			{/* Button */}
-			<TouchableOpacity className={`items-center justify-center py-3 rounded-full ${Password ? "bg-violet-500" : "bg-violet-200"}`} disabled={!Password}>
+			<TouchableOpacity
+				className={`items-center justify-center py-3 rounded-full ${Password ? "bg-violet-500" : "bg-violet-200"}`}
+				disabled={!Password}
+				onPress={handleLogin}
+			>
 				<Text className="text-lg font-semibold text-gray-50">Continue</Text>
 			</TouchableOpacity>
+
+			{/* Forgot Pass */}
 			<View className="flex-row py-4">
 				<Text className="text-sm text-black">Forgot Password ?</Text>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate("ForgotPass")}>
 					<Text className="text-sm text-black font-bold ml-1">Reset</Text>
 				</TouchableOpacity>
 			</View>

@@ -1,5 +1,6 @@
 import { View, Text, KeyboardAvoidingView, StatusBar, TouchableOpacity, TextInput, ScrollView, Animated, Easing } from "react-native";
 import React, { useState, useRef } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import Profile from "../../assets/Homepage/Profile.svg";
 import More from "../../assets/Login&Onboarding/More.svg";
@@ -15,10 +16,15 @@ import Shorts from "../../assets/Homepage/Categories/Shorts.svg";
 import Jacket from "../../assets/Homepage/Top_Selling/Jacket.svg";
 import Shoe from "../../assets/Homepage/Top_Selling/Shoe.svg";
 import Love from "../../assets/Homepage/Top_Selling/Love.svg";
+import Cancel from "../../assets/Homepage/Cancel.svg";
 
 export default function Home() {
 	const [shopFor, setShopFor] = useState("Men");
 	const [dropdownVisible, setDropdownVisible] = useState(false);
+
+	const [searchText, setSearchText] = useState("");
+
+	const navigation = useNavigation();
 
 	const dropdownHeight = useRef(new Animated.Value(0)).current;
 	const rotateValue = useRef(new Animated.Value(0)).current;
@@ -86,10 +92,17 @@ export default function Home() {
 		{ name: "Max Cirro Men's Slides", price: "$55.00", discount: "$100.97", icon: Shoe },
 	];
 
+	const handleCategory = () => {
+		navigation.navigate("MoreCategories");
+	};
+	const handleSearch = () => {
+		navigation.navigate("SearchResults");
+	};
+
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-white px-4 pt-3 " behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<ScrollView className="bg-white " showsVerticalScrollIndicator={false} keyboardDismissMode="on-drag">
-				<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
+		<KeyboardAvoidingView className="flex-1 bg-stone-50 px-4 pt-3 " behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<ScrollView className="bg-stone-50" showsVerticalScrollIndicator={false} keyboardDismissMode="on-drag">
+				<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 				{/* header */}
 				<View className="flex-row items-center justify-between py-2 px-2 mt-4 ">
 					<TouchableOpacity>
@@ -101,14 +114,14 @@ export default function Home() {
 							<More />
 						</Animated.View>
 					</TouchableOpacity>
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => navigation.navigate("Cart")}>
 						<Cart />
 					</TouchableOpacity>
 				</View>
 				{dropdownVisible && (
 					<Animated.View
 						style={{ height: dropdownHeight }}
-						className="absolute top-16 z-[1] left-0 right-0 bg-stone-50 items-center justify-center rounded-lg mx-36 mt-2 p-1 shadow-sm shadow-stone-600"
+						className="absolute top-16 z-[1] left-0 right-0 bg-stone-50 items-center justify-center rounded-lg mx-36 mt-2 p-1 shadow-md shadow-stone-500"
 					>
 						<TouchableOpacity className="py-1" onPress={() => handleSelectOption("Men")}>
 							<Text className="text-black text-base">Men</Text>
@@ -130,21 +143,28 @@ export default function Home() {
 						placeholder="Search"
 						cursorColor={"rgb(139 92 246)"}
 						maxLength={100}
-						// value={}
-						// onChangeText={}
+						onPress={() => navigation.navigate("Search")}
+						// onSubmitEditing={handleSearch}
+						value={searchText}
+						onChange={setSearchText}
 					/>
+					{searchText ? (
+						<TouchableOpacity onPress={() => setSearchText("")} className="">
+							<Cancel />
+						</TouchableOpacity>
+					) : null}
 				</View>
 				{/* Categories */}
 				<View className="pt-8 flex-row items-center justify-between px-1">
 					<Text className="text-xl text-black font-bold">Categories</Text>
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => navigation.navigate("Categories")}>
 						<Text className="text-lg text-black ">See All</Text>
 					</TouchableOpacity>
 				</View>
 				<ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-4">
 					<View className="flex-row space-x-4">
 						{categories.map((category, index) => (
-							<TouchableOpacity key={index} className="items-center">
+							<TouchableOpacity key={index} className="items-center" onPress={handleCategory}>
 								<category.icon />
 								<Text className="mt-2 text-base text-black">{category.name}</Text>
 							</TouchableOpacity>
@@ -161,7 +181,11 @@ export default function Home() {
 				<ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-4">
 					<View className="flex-row space-x-3">
 						{topSellingItems.map((item, index) => (
-							<TouchableOpacity key={index} className=" bg-stone-100 rounded-xl pb-5 pt-3 px-2 w-[173]">
+							<TouchableOpacity
+								key={index}
+								className=" bg-stone-100 rounded-xl pb-5 pt-3 px-2 w-[173]"
+								onPress={() => navigation.navigate("Product")}
+							>
 								<TouchableOpacity className="items-end mr-2">
 									<Love />
 								</TouchableOpacity>
@@ -189,7 +213,11 @@ export default function Home() {
 				<ScrollView horizontal showsHorizontalScrollIndicator={false} className="mt-4 pb-3">
 					<View className="flex-row space-x-3 mb-4">
 						{topSellingItems.map((item, index) => (
-							<TouchableOpacity key={index} className=" bg-stone-100 rounded-xl pb-5 pt-3 px-2 w-[173]">
+							<TouchableOpacity
+								key={index}
+								className=" bg-stone-100 rounded-xl pb-5 pt-3 px-2 w-[173]"
+								onPress={() => navigation.navigate("Product")}
+							>
 								<TouchableOpacity className="items-end mr-2">
 									<Love />
 								</TouchableOpacity>

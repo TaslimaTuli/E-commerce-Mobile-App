@@ -1,5 +1,6 @@
 import { View, Text, SafeAreaView, StatusBar, ScrollView, TouchableOpacity } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import BackLogo from "../../assets/Login&Onboarding/Back.svg";
 import Done from "../../assets/Notifications/Done.svg";
@@ -7,6 +8,8 @@ import NotDone from "../../assets/Notifications/NotDone.svg";
 import Order_notification from "../../assets/Notifications/Order_notification.svg";
 
 export default function OrderDetails() {
+	const navigation = useNavigation();
+
 	const orderStatus = [
 		{ name: "Delivered", date: "28 May", icon: NotDone, gray: true },
 		{ name: "Shipped", date: "28 May", icon: Done },
@@ -15,14 +18,14 @@ export default function OrderDetails() {
 	];
 
 	return (
-		<SafeAreaView className="flex-1 bg-white">
-			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
-			<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-white">
+		<SafeAreaView className="flex-1 bg-stone-50">
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+			<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-stone-50">
 				<View className="flex-row items-center justify-center  mt-7 mb-6">
-					<TouchableOpacity className=" w-0">
+					<TouchableOpacity className="p-2 " onPress={() => navigation.goBack()}>
 						<BackLogo />
 					</TouchableOpacity>
-					<Text className="text-black font-bold text-lg px-32">Order #456765</Text>
+					<Text className="text-black font-bold text-lg px-20 mr-12">Order #456765</Text>
 				</View>
 				<View className="px-4">
 					{orderStatus.map((notification, index) => (

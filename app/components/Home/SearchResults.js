@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, SafeAreaView, StatusBar, TouchableOpacity, Modal, TextInput, TouchableWithoutFeedback } from "react-native";
 import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import BackLogo from "../../assets/Login&Onboarding/Back.svg";
 
@@ -24,6 +25,7 @@ export default function SearchResult() {
 	const [selectedDeals, setSelectedDeals] = useState("");
 	const [minPrice, setMinPrice] = useState("");
 	const [maxPrice, setMaxPrice] = useState("");
+	const [searchText, setSearchText] = useState("");
 
 	const topSellingItems = [
 		{ name: "Men's Harrington Jacket", price: "$148.00", icon: Jacket },
@@ -109,20 +111,34 @@ export default function SearchResult() {
 		return count;
 	};
 
+	const navigation = useNavigation();
+
 	return (
 		<>
-			<SafeAreaView className="flex-1 bg-white px-4 pt-4">
+			<SafeAreaView className="flex-1 bg-stone-50 px-4 pt-4">
 				<ScrollView showsVerticalScrollIndicator={false} keyboardDismissMode="on-drag">
-					<StatusBar backgroundColor="white" barStyle="dark-content" />
+					<StatusBar backgroundColor="rgb(250 250 249)" barStyle="dark-content" />
 
 					{/* Header */}
 					<View className="flex-row justify-between items-center py-4">
-						<TouchableOpacity className="pr-3 w-0">
+						<TouchableOpacity className="my-2 mr-auto" onPress={() => navigation.goBack()}>
 							<BackLogo />
 						</TouchableOpacity>
 						<View className="flex-row items-center bg-stone-200 w-5/6 px-4 rounded-full">
 							<Search />
-							<TextInput className="flex-1 text-lg py-2 text-black pl-3" placeholder="Search" cursorColor="rgb(139 92 246)" maxLength={100} />
+							<TextInput
+								className="flex-1 text-lg py-2 text-black pl-3"
+								placeholder="Search"
+								cursorColor="rgb(139 92 246)"
+								maxLength={100}
+								value={searchText}
+								onChange={setSearchText}
+							/>
+							{searchText ? (
+								<TouchableOpacity onPress={() => setSearchText("")} className="">
+									<Cancel />
+								</TouchableOpacity>
+							) : null}
 						</View>
 					</View>
 
@@ -179,7 +195,7 @@ export default function SearchResult() {
 					<TouchableWithoutFeedback onPress={handleModalClose}>
 						<View className="flex-1" />
 					</TouchableWithoutFeedback>
-					<View className="h-[500] bg-white pt-4 px-4 rounded-t-3xl">
+					<View className="h-[500] bg-stone-50 pt-4 px-4 rounded-t-3xl">
 						<View className="flex-row justify-between items-center mb-6 px-2">
 							<TouchableOpacity onPress={() => handleClear(modalType)}>
 								<Text className="text-lg text-black">Clear</Text>

@@ -17,6 +17,7 @@ import User2 from "../../assets/Homepage/Products/User2.svg";
 import Rating from "../../assets/Homepage/Products/Rating.svg";
 import Cancel from "../../assets/Homepage/Cancel.svg";
 import Selected from "../../assets/Homepage/Selected.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Product() {
 	const [sizeModalVisible, setSizeModalVisible] = useState(false);
@@ -24,6 +25,8 @@ export default function Product() {
 	const [selectedSize, setSelectedSize] = useState("S");
 	const [selectedColor, setSelectedColor] = useState("#B3B68B");
 	const [quantity, setQuantity] = useState(1);
+
+	const navigation = useNavigation();
 
 	const sizes = ["S", "M", "L", "XL", "2XL"];
 
@@ -37,15 +40,15 @@ export default function Product() {
 	];
 
 	return (
-		<>
-			<ScrollView className="bg-white px-4" showsVerticalScrollIndicator={false}>
-				<SafeAreaView className="bg-white">
-					<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
+		<View className="flex-1 bg-stone-50">
+			<ScrollView className="bg-stone-50 px-4" showsVerticalScrollIndicator={false}>
+				<SafeAreaView className="bg-stone-50">
+					<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 					<View className="pt-10 flex-row justify-between items-center">
-						<TouchableOpacity className="w-0">
+						<TouchableOpacity className="" onPress={() => navigation.goBack()}>
 							<BackLogo />
 						</TouchableOpacity>
-						<TouchableOpacity className="px-5 w-0">
+						<TouchableOpacity className="px-2">
 							<Love />
 						</TouchableOpacity>
 					</View>
@@ -167,7 +170,7 @@ export default function Product() {
 					>
 						<View className="flex-1" />
 					</TouchableOpacity>
-					<View className="bg-white  pt-4 px-4 rounded-t-3xl">
+					<View className="bg-stone-50  pt-4 px-4 rounded-t-3xl">
 						<View className="flex-row justify-between items-center mb-5">
 							<Text className="text-2xl text-black font-black ml-40">Size</Text>
 							<TouchableOpacity onPress={() => setSizeModalVisible(false)} className="">
@@ -217,7 +220,7 @@ export default function Product() {
 					>
 						<View className="flex-1" />
 					</TouchableOpacity>
-					<View className="bg-white rounded-t-3xl pt-4 px-4">
+					<View className="bg-stone-50 rounded-t-3xl pt-4 px-4">
 						<View className="flex-row justify-between items-center mb-5">
 							<Text className="text-2xl text-black font-black ml-40">Color</Text>
 							<TouchableOpacity onPress={() => setColorModalVisible(false)} className="">
@@ -256,6 +259,6 @@ export default function Product() {
 					</View>
 				</View>
 			</Modal>
-		</>
+		</View>
 	);
 }

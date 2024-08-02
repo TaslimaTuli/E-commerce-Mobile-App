@@ -1,10 +1,9 @@
 import React from "react";
 
-import AddCard from "./components/Settings/AddCard";
-import Settings from "./components/Settings/Settings";
+import StackNavigator from "./navigation/StackNavigator";
 
 function App() {
-	return <Settings />;
+	return <StackNavigator />;
 }
 
 export default App;

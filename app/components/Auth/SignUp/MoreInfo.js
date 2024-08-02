@@ -2,6 +2,7 @@ import { View, Text, StatusBar, TouchableOpacity, SafeAreaView, Animated, Easing
 import React, { useState, useRef } from "react";
 
 import More from "../../../assets/Login&Onboarding/More.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function MoreInfo() {
 	const [shopFor, setShopFor] = useState("Men");
@@ -64,20 +65,25 @@ export default function MoreInfo() {
 
 	const isFormComplete = shopFor !== "" && ageRange !== "";
 
+	const navigation = useNavigation();
+	const handleSignup = () => {
+		navigation.navigate("Home");
+	};
+
 	return (
-		<SafeAreaView className="flex-1 bg-white px-5 py-3">
-			<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
+		<SafeAreaView className="flex-1 bg-stone-50 px-5 py-3">
+			<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 			<Text className="text-3xl font-bold text-black pb-3 pt-16">Tell us about yourself</Text>
 			<Text className="text-lg text-black mt-8">Who do you shop for?</Text>
 			<View className="flex-row my-5">
 				<TouchableOpacity
-					className={`flex-1 items-center py-3 rounded-full ${shopFor === "Men" ? "bg-violet-500" : "bg-gray-200"}`}
+					className={`flex-1 items-center py-3 rounded-full ${shopFor === "Men" ? "bg-violet-500" : "bg-stone-200"}`}
 					onPress={() => setShopFor("Men")}
 				>
 					<Text className={`text-lg ${shopFor === "Men" ? "text-gray-50" : "text-black"}`}>Men</Text>
 				</TouchableOpacity>
 				<TouchableOpacity
-					className={`flex-1 items-center py-3 rounded-full ml-3 ${shopFor === "Women" ? "bg-violet-500" : "bg-gray-200"}`}
+					className={`flex-1 items-center py-3 rounded-full ml-3 ${shopFor === "Women" ? "bg-violet-500" : "bg-stone-200"}`}
 					onPress={() => setShopFor("Women")}
 				>
 					<Text className={`text-lg ${shopFor === "Women" ? "text-gray-50" : "text-black"}`}>Women</Text>
@@ -85,14 +91,14 @@ export default function MoreInfo() {
 			</View>
 			{/* Dropdown */}
 			<Text className="text-lg text-black mt-8 mb-4">How old are you?</Text>
-			<TouchableOpacity className="flex-row items-center justify-between mx-4 px-5 py-4 rounded-full bg-gray-200" onPress={toggleDropdown}>
+			<TouchableOpacity className="flex-row items-center justify-between mx-4 px-5 py-4 rounded-full bg-stone-200" onPress={toggleDropdown}>
 				<Text className="text-lg text-black">{ageRange || "Age Range"}</Text>
 				<Animated.View style={animatedStyle}>
 					<More />
 				</Animated.View>
 			</TouchableOpacity>
 			{showDropdown && (
-				<Animated.View style={{ height: dropdownHeight }} className="mx-4 mt-2 rounded-lg bg-white shadow-lg overflow-hidden">
+				<Animated.View style={{ height: dropdownHeight }} className="mx-4 mt-2 rounded-lg bg-stone-100 shadow-md shadow-stone-500 overflow-hidden">
 					<ScrollView>
 						{ageRanges.map((range, index) => (
 							<TouchableOpacity
@@ -113,6 +119,7 @@ export default function MoreInfo() {
 				<TouchableOpacity
 					className={`mx-4 py-4 rounded-full items-center ${isFormComplete ? "bg-violet-500" : "bg-violet-200"}`}
 					disabled={!isFormComplete}
+					onPress={handleSignup}
 				>
 					<Text className="text-gray-50 text-lg ">Finish</Text>
 				</TouchableOpacity>

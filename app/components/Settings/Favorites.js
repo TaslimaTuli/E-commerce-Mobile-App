@@ -1,5 +1,6 @@
 import { View, Text, SafeAreaView, StatusBar, TouchableOpacity, ScrollView, TextInput, KeyboardAvoidingView } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 
 import BackLogo from "../../assets/Login&Onboarding/Back.svg";
 
@@ -11,6 +12,8 @@ import Hoodie3 from "../../assets/Homepage/Hoodie3.svg";
 import Love from "../../assets/Homepage/Top_Selling/RedHeart.svg";
 
 export default function Favorites() {
+	const navigation = useNavigation();
+
 	const topSellingItems = [
 		{ name: "Men's Harrington Jacket", price: "$148.00", icon: Jacket },
 		{ name: "Men's Fleece Pullover Hoodie", price: "$100.00", discount: "$100.97", icon: Hoodie1 },
@@ -19,16 +22,16 @@ export default function Favorites() {
 	];
 
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-white" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<SafeAreaView className="flex-1 bg-white">
-				<StatusBar backgroundColor={"rgb(255 255 255)"} barStyle={"dark-content"} />
-				<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-white px-4" contentContainerStyle={{ flexGrow: 1 }}>
+		<KeyboardAvoidingView className="flex-1 bg-stone-50" behavior={Platform.OS === "ios" ? "padding" : "height"}>
+			<SafeAreaView className="flex-1 bg-stone-50">
+				<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
+				<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-stone-50 px-4" contentContainerStyle={{ flexGrow: 1 }}>
 					{/* header */}
-					<View className="flex-row items-center justify-center mt-7 mb-6">
-						<TouchableOpacity className="w-0">
+					<View className="flex-row items-center justify-center mt-5">
+						<TouchableOpacity className="p-2" onPress={() => navigation.goBack()}>
 							<BackLogo />
 						</TouchableOpacity>
-						<Text className="text-black font-bold text-xl px-28">My Favorites (12)</Text>
+						<Text className="text-black font-bold text-xl px-[75] mr-10">My Favorites (12)</Text>
 					</View>
 
 					{/* Cards */}

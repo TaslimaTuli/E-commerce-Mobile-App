@@ -3,9 +3,15 @@ import React, { useState } from "react";
 import AppleLogo from "../../../assets/Login&Onboarding/Apple.svg";
 import FbLogo from " ../../../assets/Login&Onboarding/Fb.svg";
 import GoogleLogo from "../../../assets/Login&Onboarding/Google.svg";
+import { useNavigation } from "@react-navigation/native";
 
 export default function SignIn1() {
 	const [email, setEmail] = useState("");
+
+	const navigation = useNavigation();
+	const handleNext = () => {
+		navigation.navigate("SignIn2");
+	};
 
 	return (
 		<KeyboardAvoidingView className="flex-1 bg-stone-50 px-5 py-3" behavior={Platform.OS === "ios" ? "padding" : "height"}>
@@ -22,12 +28,16 @@ export default function SignIn1() {
 				onChangeText={setEmail}
 			/>
 			{/* Button */}
-			<TouchableOpacity className={`items-center justify-center py-3 rounded-full ${email ? "bg-violet-500" : "bg-violet-200"}`} disabled={!email}>
+			<TouchableOpacity
+				className={`items-center justify-center py-3 rounded-full ${email ? "bg-violet-500" : "bg-violet-200"}`}
+				disabled={!email}
+				onPress={handleNext}
+			>
 				<Text className="text-lg font-semibold text-gray-50">Continue</Text>
 			</TouchableOpacity>
 			<View className="flex-row py-4">
 				<Text className="text-sm text-black">Don't have an Account ?</Text>
-				<TouchableOpacity>
+				<TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
 					<Text className="text-sm text-black font-bold ml-1">Create One</Text>
 				</TouchableOpacity>
 			</View>
