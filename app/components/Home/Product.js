@@ -147,7 +147,10 @@ export default function Product() {
 			</ScrollView>
 
 			{/* Add to cart */}
-			<TouchableOpacity className="flex-row items-center justify-between py-4 mb-6 mx-4 rounded-full bg-violet-500 shadow-lg shadow-black">
+			<TouchableOpacity
+				className="flex-row items-center justify-between py-4 mb-6 mx-4 rounded-full bg-violet-500 shadow-lg shadow-black"
+				onPress={() => navigation.navigate("Cart")}
+			>
 				<Text className="text-lg font-bold text-white px-5">$148.00</Text>
 				<Text className="text-lg font-medium text-white px-5">Add to Bag</Text>
 			</TouchableOpacity>

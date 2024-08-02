@@ -19,6 +19,7 @@ export default function SignIn2() {
 				placeholder="Password"
 				blurOnSubmit={true}
 				cursorColor={"rgb(139 92 246)"}
+				secureTextEntry={true}
 				maxLength={100}
 				value={Password}
 				onChangeText={setPassword}

@@ -105,7 +105,7 @@ export default function Home() {
 				<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
 				{/* header */}
 				<View className="flex-row items-center justify-between py-2 px-2 mt-4 ">
-					<TouchableOpacity>
+					<TouchableOpacity onPress={() => navigation.navigate("SettingsTab")}>
 						<Profile />
 					</TouchableOpacity>
 					<TouchableOpacity onPress={toggleDropdown} className="flex-row items-center justify-between py-3 px-4 rounded-full space-x-1 bg-stone-200">
