@@ -1,16 +1,19 @@
-import { View, Text, SafeAreaView, StatusBar, TouchableOpacity, ScrollView, TextInput, KeyboardAvoidingView, Platform } from "react-native";
+import { View, Text, SafeAreaView, StatusBar, TouchableOpacity, ScrollView, TextInput, KeyboardAvoidingView, Platform, useColorScheme } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 
 import BackLogo from "../../assets/Login&Onboarding/Back.svg";
+import BackDark from "../../assets/Login&Onboarding/BackDark.svg";
 
 export default function AddCard() {
-	const [CardNum, setCardNum] = useState("");
+	const [cardNum, setCardNum] = useState("");
 	const [name, setName] = useState("");
-	const [CCV, setCCV] = useState("");
-	const [Exp, setExp] = useState("");
+	const [ccv, setCCV] = useState("");
+	const [exp, setExp] = useState("");
 
-	const isFormValid = CardNum || name || CCV || Exp;
+	const colorScheme = useColorScheme();
+
+	const isFormValid = cardNum && name && ccv && exp;
 
 	const navigation = useNavigation();
 	const handleSave = () => {
@@ -22,51 +25,73 @@ export default function AddCard() {
 	};
 
 	return (
-		<KeyboardAvoidingView className="flex-1 bg-stone-50" behavior={Platform.OS === "ios" ? "padding" : "height"}>
-			<SafeAreaView className="flex-1 bg-stone-50">
-				<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
-				<ScrollView showsVerticalScrollIndicator={false} className="flex-1 bg-stone-50 px-4" contentContainerStyle={{ flexGrow: 1 }}>
-					{/* header */}
+		<KeyboardAvoidingView
+			className={`flex-1 ${colorScheme === "dark" ? "bg-gray-900" : "bg-stone-50"}`}
+			behavior={Platform.OS === "ios" ? "padding" : "height"}
+		>
+			<SafeAreaView className={`flex-1 ${colorScheme === "dark" ? "bg-gray-900" : "bg-stone-50"}`}>
+				<StatusBar
+					backgroundColor={colorScheme === "dark" ? "rgb(17 24 39)" : "rgb(250 250 249)"}
+					barStyle={colorScheme === "dark" ? "light-content" : "dark-content"}
+				/>
+				<ScrollView
+					showsVerticalScrollIndicator={false}
+					className={`flex-1 ${colorScheme === "dark" ? "bg-gray-900" : "bg-stone-50"} px-4`}
+					contentContainerStyle={{ flexGrow: 1 }}
+				>
+					{/* Header */}
 					<View className="flex-row items-center justify-center mt-5 mb-4">
 						<TouchableOpacity className="mr-auto ml-2" onPress={() => navigation.goBack()}>
-							<BackLogo />
+							{colorScheme === "light" ? <BackLogo /> : <BackDark />}
 						</TouchableOpacity>
-						<Text className="text-black font-bold text-xl px-24 mr-12">Add Card</Text>
+						<Text className={`text-xl font-bold px-24 mr-12 ${colorScheme === "dark" ? "text-white" : "text-black"}`}>Add Card</Text>
 					</View>
 
-					{/* ... */}
-					<View className="px-4 space-y-3 items-center">
+					{/* Form */}
+					<View className="px-4 space-y-3">
 						<TextInput
-							className="bg-stone-100 py-4 px-4 text-lg w-full rounded-xl"
+							className={`bg-${colorScheme === "dark" ? "gray-800" : "stone-100"} py-4 px-4 text-lg w-full rounded-xl ${
+								colorScheme === "dark" ? "text-white" : "text-black"
+							}`}
 							placeholder="Card Number"
+							placeholderTextColor={colorScheme === "light" ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.6)"}
 							cursorColor={"rgb(139 92 246)"}
-							maxLength={100}
+							maxLength={19}
 							keyboardType="numeric"
-							value={CardNum}
+							value={cardNum}
 							onChangeText={setCardNum}
 						/>
-						<View className="flex-1 flex-row items-center justify-between space-x-5">
+						<View className="flex-row items-center justify-between space-x-5">
 							<TextInput
-								className="bg-stone-100 py-4 px-4 w-[47%] text-lg rounded-xl"
+								className={`bg-${colorScheme === "dark" ? "gray-800" : "stone-100"} py-4 px-4 w-[47%] text-lg rounded-xl ${
+									colorScheme === "dark" ? "text-white" : "text-black"
+								}`}
 								placeholder="CCV"
+								placeholderTextColor={colorScheme === "light" ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.6)"}
 								cursorColor={"rgb(139 92 246)"}
-								maxLength={100}
+								maxLength={4}
 								keyboardType="numeric"
-								value={CCV}
+								value={ccv}
 								onChangeText={setCCV}
 							/>
 							<TextInput
-								className="bg-stone-100 py-4 px-4 text-lg w-[47%] rounded-xl"
-								placeholder="Exp"
+								className={`bg-${colorScheme === "dark" ? "gray-800" : "stone-100"} py-4 px-4 text-lg w-[47%] rounded-xl ${
+									colorScheme === "dark" ? "text-white" : "text-black"
+								}`}
+								placeholder="Exp (MM/YY)"
+								placeholderTextColor={colorScheme === "light" ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.6)"}
 								cursorColor={"rgb(139 92 246)"}
-								maxLength={100}
-								value={Exp}
+								maxLength={5}
+								value={exp}
 								onChangeText={setExp}
 							/>
 						</View>
 						<TextInput
-							className="bg-stone-100 py-4 px-4 text-lg w-full rounded-xl"
+							className={`bg-${colorScheme === "dark" ? "gray-800" : "stone-100"} py-4 px-4 text-lg w-full rounded-xl ${
+								colorScheme === "dark" ? "text-white" : "text-black"
+							}`}
 							placeholder="Cardholder Name"
+							placeholderTextColor={colorScheme === "light" ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.6)"}
 							cursorColor={"rgb(139 92 246)"}
 							maxLength={100}
 							value={name}
@@ -74,10 +99,12 @@ export default function AddCard() {
 						/>
 					</View>
 				</ScrollView>
-				{/* Button */}
-				<View className="px-4">
+				{/* Save Button */}
+				<View className="px-4 mb-10">
 					<TouchableOpacity
-						className={`items-center justify-center my-10 py-4 rounded-full ${isFormValid ? "bg-violet-500" : "bg-violet-200"}`}
+						className={`items-center justify-center py-4 rounded-full ${isFormValid ? "bg-violet-500" : "bg-violet-200"} ${
+							colorScheme === "dark" ? "shadow-gray-600" : "shadow-stone-500"
+						}`}
 						disabled={!isFormValid}
 						onPress={handleSave}
 					>

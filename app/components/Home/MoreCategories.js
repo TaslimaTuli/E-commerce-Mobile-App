@@ -1,7 +1,8 @@
-import { View, Text, StatusBar, TouchableOpacity, ScrollView, SafeAreaView } from "react-native";
+import { View, Text, StatusBar, TouchableOpacity, ScrollView, SafeAreaView, useColorScheme } from "react-native";
 import React from "react";
 
 import BackLogo from "../../assets/Login&Onboarding/Back.svg";
+import BackDark from "../../assets/Login&Onboarding/BackDark.svg";
 import Jacket from "../../assets/Homepage/Top_Selling/Jacket.svg";
 import Hoodie1 from "../../assets/Homepage/Hoodie1.svg";
 import Hoodie2 from "../../assets/Homepage/Hoodie2.svg";
@@ -10,6 +11,7 @@ import Love from "../../assets/Homepage/Top_Selling/Love.svg";
 import { useNavigation } from "@react-navigation/native";
 
 export default function MoreCategories() {
+	const color = useColorScheme();
 	const navigation = useNavigation();
 
 	const topSellingItems = [
@@ -24,29 +26,42 @@ export default function MoreCategories() {
 	];
 
 	return (
-		<SafeAreaView className="flex-1 bg-stone-50 px-4 pt-7">
+		<SafeAreaView className={`flex-1 ${color === "light" ? "bg-stone-50" : "bg-gray-900"} px-4 pt-4`}>
 			<ScrollView showsVerticalScrollIndicator={false}>
-				<StatusBar backgroundColor={"rgb(250 250 249)"} barStyle={"dark-content"} />
-				<TouchableOpacity className="my-4 mr-auto " onPress={() => navigation.goBack()}>
-					<BackLogo />
+				<StatusBar
+					backgroundColor={color === "light" ? "rgb(250 250 249)" : "rgb(17 24 39)"}
+					barStyle={color === "light" ? "dark-content" : "light-content"}
+				/>
+				<TouchableOpacity className="my-4 mr-auto" onPress={() => navigation.goBack()}>
+					{color === "light" ? <BackLogo /> : <BackDark />}
 				</TouchableOpacity>
-				<Text className="text-xl font-extrabold text-black pb-5">Hoodies (240)</Text>
+				<Text className={`text-xl font-extrabold ${color === "light" ? "text-black" : "text-white"} pb-3`}>Hoodies (240)</Text>
 
-				<View className="flex-row flex-wrap justify-between items-center">
+				<View className="flex-row flex-wrap space-y-4 px-3 justify-between items-center">
 					{topSellingItems.map((item, index) => (
-						<TouchableOpacity key={index} className="bg-stone-100 rounded-xl p-3 mb-4 w-[48%]" onPress={() => navigation.navigate("Product")}>
-							<TouchableOpacity className="items-end mb-2">
+						<TouchableOpacity
+							key={index}
+							className={`rounded-xl overflow-hidden pb-5 w-[159] ${color === "light" ? "bg-stone-100" : "bg-gray-700"}`}
+							onPress={() => navigation.navigate("Product")}
+						>
+							<item.icon />
+							<TouchableOpacity className=" absolute top-2 right-3">
 								<Love />
 							</TouchableOpacity>
-							<View className="items-center justify-center">
-								<item.icon />
-							</View>
-							<Text className="mt-2 text-lg text-black font-medium" numberOfLines={1} ellipsizeMode="tail">
+							<Text
+								className={`mt-2 px-1.5 text-base font-medium ${color === "light" ? "text-black" : "text-white"}`}
+								numberOfLines={1}
+								ellipsizeMode="tail"
+							>
 								{item.name}
 							</Text>
-							<View className="flex-row space-x-3 mb-2">
-								<Text className="mt-1 text-base text-black font-black">{item.price}</Text>
-								{/* {item.discount && <Text className="mt-1 text-base text-stone-500 line-through">{item.discount}</Text>} */}
+							<View className="flex-row space-x-3">
+								<Text className={`mt-1 px-1.5  text-base font-black ${color === "light" ? "text-black" : "text-white"}`}>{item.price}</Text>
+								{item.discount && (
+									<Text className={`mt-1 text-base ${color === "light" ? "text-stone-500" : "text-gray-400"} line-through`}>
+										{item.discount}
+									</Text>
+								)}
 							</View>
 						</TouchableOpacity>
 					))}
