@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import SearchIcon from "../../assets/Homepage/Search.svg";
 import SearchWhite from "../../assets/Homepage/SearchWhite.svg";
 import Cancel from "../../assets/Homepage/Cancel.svg";
+import CancelW from "../../assets/Homepage/CancelW.svg";
 import BackLogo from "../../assets/Login&Onboarding/Back.svg";
 import BackDark from "../../assets/Login&Onboarding/BackDark.svg";
 
@@ -65,7 +66,7 @@ export default function Search() {
 						/>
 						{searchText ? (
 							<TouchableOpacity onPress={() => setSearchText("")} className="">
-								<Cancel />
+								{color === "light" ? <Cancel /> : <CancelW />}
 							</TouchableOpacity>
 						) : null}
 					</View>

@@ -14,6 +14,7 @@ import Love from "../../assets/Homepage/Top_Selling/Love.svg";
 import Search from "../../assets/Homepage/Search.svg";
 import SearchWhite from "../../assets/Homepage/SearchWhite.svg";
 import Cancel from "../../assets/Homepage/Cancel.svg";
+import CancelW from "../../assets/Homepage/CancelW.svg";
 import Selected from "../../assets/Homepage/Selected.svg";
 import Filter from "../../assets/Homepage/Filter.svg";
 import More from "../../assets/Login&Onboarding/More.svg";
@@ -146,7 +147,7 @@ export default function SearchResult() {
 							/>
 							{searchText ? (
 								<TouchableOpacity onPress={() => setSearchText("")} className="">
-									<Cancel />
+									{colorScheme === "light" ? <Cancel /> : <CancelW />}
 								</TouchableOpacity>
 							) : null}
 						</View>
@@ -226,9 +227,7 @@ export default function SearchResult() {
 								<Text className={`text-lg ${colorScheme === "dark" ? "text-white" : "text-black"}`}>Clear</Text>
 							</TouchableOpacity>
 							<Text className={`text-2xl font-black ${colorScheme === "dark" ? "text-white" : "text-black"}`}>{modalType}</Text>
-							<TouchableOpacity onPress={handleModalClose}>
-								<Cancel />
-							</TouchableOpacity>
+							<TouchableOpacity onPress={handleModalClose}>{colorScheme === "light" ? <Cancel /> : <CancelW />}</TouchableOpacity>
 						</View>
 						<ScrollView showsVerticalScrollIndicator={false}>
 							{modalType === "Sort By" &&

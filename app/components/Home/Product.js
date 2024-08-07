@@ -20,6 +20,7 @@ import User1 from "../../assets/Homepage/Products/User1.svg";
 import User2 from "../../assets/Homepage/Products/User2.svg";
 import Rating from "../../assets/Homepage/Products/Rating.svg";
 import Cancel from "../../assets/Homepage/Cancel.svg";
+import CancelW from "../../assets/Homepage/CancelW.svg";
 import Selected from "../../assets/Homepage/Selected.svg";
 import { useNavigation } from "@react-navigation/native";
 
@@ -56,8 +57,8 @@ export default function Product() {
 					/>
 					<View className="flex-row justify-between items-center">
 						<TouchableOpacity onPress={() => navigation.goBack()}>{colorScheme === "light" ? <BackLogo /> : <BackDark />}</TouchableOpacity>
-						<TouchableOpacity className={`p-2 rounded-full ${colorScheme === "light" ? "bg-stone-50" : "bg-gray-700"}`}>
-							{colorScheme === "light" ? <Love /> : <LoveWhite height={20} width={20} />}
+						<TouchableOpacity className={`p-3 rounded-full ${colorScheme === "light" ? "bg-stone-200" : "bg-gray-700"}`}>
+							{colorScheme === "light" ? <Love height={15} width={15} /> : <LoveWhite height={15} width={15} />}
 						</TouchableOpacity>
 					</View>
 
@@ -188,9 +189,7 @@ export default function Product() {
 					<View className={`bg-stone-50 pt-4 px-4 rounded-t-3xl ${bgColor}`}>
 						<View className="flex-row justify-between items-center mb-5">
 							<Text className={`text-2xl ${textColor} font-black ml-40`}>Size</Text>
-							<TouchableOpacity onPress={() => setSizeModalVisible(false)}>
-								<Cancel />
-							</TouchableOpacity>
+							<TouchableOpacity onPress={() => setSizeModalVisible(false)}>{colorScheme === "light" ? <Cancel /> : <CancelW />}</TouchableOpacity>
 						</View>
 						<View className="h-[350]">
 							<ScrollView showsVerticalScrollIndicator={false}>
@@ -233,7 +232,7 @@ export default function Product() {
 						<View className="flex-row justify-between items-center mb-5">
 							<Text className={`text-2xl ${textColor} font-black ml-40`}>Color</Text>
 							<TouchableOpacity onPress={() => setColorModalVisible(false)}>
-								<Cancel />
+								{colorScheme === "light" ? <Cancel /> : <CancelW />}
 							</TouchableOpacity>
 						</View>
 						<View className="h-[350] pb-4">
